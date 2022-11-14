@@ -12,17 +12,25 @@ def levelOne():
     points = []
     a = random.randint(0,9)
     b = random.randint(0,9)
-    ans = a + b
-    print("What is ", a, "+ ",b, "?")
+    signlist = ['+','-','/','*']
+    c = random.randint(0,3)
+    if c == 0:
+        ans = a + b
+    elif c == 1:
+        ans = a - b
+    elif c == 2:
+        ans = a/b
+    else:
+        ans = a*b
+    print("What is ", a, signlist[c],b, "?")
     user_ans = eval(input("Answer here: "))
     count = 1
     while user_ans != ans and count != 3:
         count += 1
         earnable_points -= 1
         print("Please try again")
-        print("What is ", a, "+ ",b, "?")
+        print("What is ", a, signlist[c],b, "?")
         user_ans = eval(input("Answer here: "))
-        print(count)
     if count == 0 or count < 3:
         points.append(earnable_points)
     else:
