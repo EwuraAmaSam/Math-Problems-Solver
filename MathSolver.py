@@ -1,8 +1,54 @@
 import random
+# import time
+
 def Rules():
-    print("Welcome to another challenge with Ananse.")
-    print("Here are the rules:")
-    menu = eval(input("Type 0 to go back to the main menu: "))
+    # a = "Welcome to another game with Ananse"
+    print(f"{'Welcome to another game with Ananse 😁':>70}")
+    print(f"{'Are you ready? 😎':>70}")
+    print(f"{'Let us check out the rules rules 📃':>70}")
+    print(" ")
+    print(f"{'BEGINNER LEVEL RULES':>30}")
+    print(" ")
+    print(f"{'👩‍🏫At this stage, you will be working with just one math operator.':>50}")
+    print(" ")
+    print(f"{'👩‍🏫It could be addition, subtraction, division, or multiplication.':>50}")
+    print(" ")
+    print(f"{'👩‍🏫Do you know the good part to this level?? There is no time limit😉':>50}")
+    print(" ")
+
+    print(f"{'INTERMEDIATE LEVEL RULES':>30}")
+    print(" ")
+    print(f"{'👩‍🏫At this level, we are going to try bigger numbers with only one operator':>50}")
+    print(" ")
+    print(f"{'👩‍🏫You also have 3 minutes to solve each problem.':>50}")
+    print(" ")
+    print(f"{'👩‍🏫If you get it correct on the first attempt, you earn 5 points on the second, 4 points and ':>50}")
+    # print(" ")
+    print(f"{'3 points on the third. If, after three attempts you still do not get the answer, you earns 1 point for trying.':>50}")
+    print(" ")
+
+    print(f"{'ADVANCED LEVEL RULES':>30}")
+    print(" ")
+    print(f"{'👩‍🏫This is the part where it gets challenging but interesting.':>50}")
+    print(" ")
+    print(f"{'👩‍🏫At this level, you get to work with two math operators (+,-) and higher numbers.':>50}")
+    print(" ")
+    print(f"{'👩‍🏫You have 5 minutes to answer each question':>50}")
+    print(" ")
+
+
+    print(f"{'RULES FOR THE SCORES':>60}")
+    print(" ")
+    print(f"{'If you get it correct on the first attempt, you earn 5 points ✔🎊':>50}")
+    print(" ")
+    print(f"{'If you get it correct on the second attempt, you earn 4 points ✔🥂':>50}")
+    print(" ")
+    print(f"{'If you get it correct on the third attempt, you earn 5 points ✔👏':>50}")
+    print(" ")
+    print(f"{'If you do not get it after the three attempts, you get 1 point 😉':>50}")
+    print(" ")
+
+    menu = eval(input(f"{'TYPE 0 TO GO BACK TO THE MAIN MENU: ' :>70}"))
     if menu == 0:
         main()
     else:
@@ -12,7 +58,7 @@ def ScoreBoard():
     pass
 
 def levelOne():
-    name = input("Now, enter your name to begin: ")
+    name = input(f"{'Welcome 🥳! Enter your name to begin:':^50}")
     earnable_points = 5
     points = []
     question = 0
@@ -31,14 +77,14 @@ def levelOne():
         else:
             ans = a*b
         print("What is ", a, signlist[c],b, "?")
-        user_ans = eval(input("Answer here: "))
+        user_ans = eval(input(f"{'Answer here: ':^50}"))
         count = 1
         while user_ans != ans and count != 3:
             count += 1
             earnable_points -= 1
             print("Please try again")
             print("What is ", a, signlist[c],b, "?")
-            user_ans = eval(input("Answer here: "))
+            user_ans = eval(input(f"{'Answer here: ':^50}"))
         if count == 0 or count < 3:
             points.append(earnable_points)
             print("Well done! You have earned,", earnable_points)
@@ -53,7 +99,7 @@ def levelOne():
 
 
 def levelTwo():
-    name = input("Now, enter your name to begin: ")
+    name = input(f"{'Welcome 🥳! Enter your name to begin:':^50}")
     earnable_points = 5
     points = []
     question = 0
@@ -72,20 +118,25 @@ def levelTwo():
         else:
             ans = a*b
         print("What is ", a, signlist[c],b, "?")
-        user_ans = eval(input("Answer here: "))
+        user_ans = eval(input(f"{'Answer here: ':^50}"))
         count = 1
-        while user_ans != ans and count != 3:
+        t = 10
+        while user_ans != ans and count !=3:
             count += 1
             earnable_points -= 1
             print("Please try again")
             print("What is ", a, signlist[c],b, "?")
-            user_ans = eval(input("Answer here: "))
+            user_ans = eval(input(f"{'Answer here: ':^50}"))
         if count == 0 or count < 3:
             points.append(earnable_points)
-            print("Well done! You have earned,", earnable_points)
+            print("Well done! You have earned,", earnable_points, "points")
         else:
             points.append(1)
             print("The answer is ", ans)
+            print("Better luck next time 👌.")
+            print(" ")
+            print("Let's go to the next question 😃.")
+            print(" ")
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
 
@@ -94,7 +145,7 @@ def levelTwo():
 # levelTwo()
 
 def levelThree():
-    name = input("Now, enter your name to begin: ")
+    name = input(f"{'Welcome 🥳! Enter your name to begin:':^50}")
     earnable_points = 5
     points = []
     question = 0
@@ -115,14 +166,14 @@ def levelThree():
         else:
             ans = a-b+d
         print("What is ", a, signlist[c],b,signlist[e],d, "?")
-        user_ans = eval(input("Answer here: "))
+        user_ans = eval(input(f"{'Answer here: ':^50}"))
         count = 1
         while user_ans != ans and count != 3:
             count += 1
             earnable_points -= 1
             print("Please try again")
             print("What is ", a, signlist[c],b,signlist[e],d, "?")
-            user_ans = eval(input("Answer here: "))
+            user_ans = eval(input(f"{'Answer here: ':^50}"))
         if count == 0 or count < 3:
             points.append(earnable_points)
             print("Well done! You have earned,", earnable_points)
@@ -136,10 +187,12 @@ def levelThree():
 # Function to begin the game
 def Game():
     
-    print("Please choose the level.")
-    print("Type 1 for Beginner level")
-    print("Type 2 for Intermediate level")
-    print("Type 3 for Advanced level")
+    print(f"{'Please choose the level.':^90}")
+    print(f"{'Type 1 for BEGINNER level 👶.':^90}")
+    print(f"{'Type 2 for INTERMEDIATE level 🏃‍♂️.':^90}")
+    print(f"{'Type 3 for ADVANCED level. 🏃‍♀️💨':^90}")
+    print(" ")
+   
     level = eval(input("Level: "))
     if level == 1:
         levelOne()
@@ -169,5 +222,6 @@ def Begin():
 
 def main():
     Begin()
+
 main()
     
