@@ -22,10 +22,7 @@ def Rules():
     print(" ")
     print(f"{'👩‍🏫You also have 3 minutes to solve each problem.':>50}")
     print(" ")
-    print(f"{'👩‍🏫If you get it correct on the first attempt, you earn 5 points on the second, 4 points and ':>50}")
-    # print(" ")
-    print(f"{'3 points on the third. If, after three attempts you still do not get the answer, you earns 1 point for trying.':>50}")
-    print(" ")
+   
 
     print(f"{'ADVANCED LEVEL RULES':>30}")
     print(" ")
@@ -135,8 +132,8 @@ def levelTwo():
             print("The answer is ", ans)
             print("Better luck next time 👌.")
             print(" ")
-            print("Let's go to the next question 😃.")
-            print(" ")
+            # print("Let's go to the next question 😃.")
+            # print(" ")
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
 
@@ -188,12 +185,13 @@ def levelThree():
 def Game():
     
     print(f"{'Please choose the level.':^90}")
+    print(" ")
     print(f"{'Type 1 for BEGINNER level 👶.':^90}")
     print(f"{'Type 2 for INTERMEDIATE level 🏃‍♂️.':^90}")
     print(f"{'Type 3 for ADVANCED level. 🏃‍♀️💨':^90}")
     print(" ")
    
-    level = eval(input("Level: "))
+    level = eval(input(f"{'Level: ':^50}"))
     if level == 1:
         levelOne()
     elif level == 2:
@@ -203,10 +201,11 @@ def Game():
         
 # Function to run the Home page
 def Begin():
-    print("Hey there. What do you want to do?")
-    print("Type 1 to see the RULES.")
-    print("Type 2 to see the SCORE BOARD.")
-    print("Type 3 to BEGIN THE GAME.")
+    print(f"{'Hey there. What do you want to do?':^90}")
+    print(f"{'Type 1 to see the RULES.':^90}")
+    print(f"{'Type 2 to see the SCORE BOARD.':^90}")
+    print(f"{'Type 3 to BEGIN THE GAME.':^90}")
+
     ToDo = eval(input("Please type here: "))
     if ToDo == 1:
         Rules()
