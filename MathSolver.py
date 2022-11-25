@@ -1,6 +1,50 @@
 import random
 # import time
 
+leaderboard_1={}
+leaderboard_2={}
+leaderboard_3={} 
+
+
+
+def saveleaderboard1():
+    with open('leaderboard1_Ananse.txt','w') as file:
+            file.writelines('------leaderboard_1------------- \n')
+            file.writelines('   Name      | Score  \n')
+            for j in leaderboard_1:
+                spaces_count=15-len(j)
+                spaces=' '*spaces_count
+                file.writelines('{}{}|    {}\n'.format(j,spaces,leaderboard_1[j]))
+          
+
+def saveleaderboard2():
+    with open('leaderboard2_Ananse.txt','w') as file:
+            file.writelines('------leaderboard_2------------- \n')
+            file.writelines('   Name      | Score  \n')
+            for j in leaderboard_2:
+                spaces_count=15-len(j)
+                spaces=' '*spaces_count
+                file.writelines('{}{}|    {}\n'.format(j,spaces,leaderboard_2[j]))
+        
+
+def saveleaderboard3():
+    with open('leaderboard3_Ananse.txt','w') as file:
+            file.writelines('------leaderboard_3------------- \n')
+            file.writelines('   Name      | Score  \n')
+            for j in leaderboard_3:
+                spaces_count=15-len(j)
+                spaces=' '*spaces_count
+                file.writelines('{}{}|    {}\n'.format(j,spaces,leaderboard_3[j]))
+         
+            print('Leaderboards Ready!')
+
+# saveleaderboard1()
+
+# saveleaderboard2()
+
+# saveleaderboard3()
+
+
 def Rules():
     # a = "Welcome to another game with Ananse"
     print(f"{'Welcome to another game with Ananse 😁':>70}")
@@ -51,8 +95,15 @@ def Rules():
     else:
         pass
 
+def Savetoleaderboard(filename,name,points):
+    with open(filename,'a') as file:
+        spaces_count=15-len(name)
+        spaces=' '*spaces_count
+        file.writelines('{}{}|    {}\n'.format(name,spaces,sum(points)))
+
 def ScoreBoard():
     pass
+
 
 def levelOne():
     name = input(f"{'Welcome 🥳! Enter your name to begin:':^50}")
@@ -90,6 +141,10 @@ def levelOne():
             print("The answer is ", ans, "and you earn 1 point for trying 👏.")
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
+    leaderboard_1[name]=sum(points)
+    Savetoleaderboard('leaderboard1_Ananse.txt',name,points)
+    writeleaderboard()
+
 
               
 # levelOne()        
@@ -135,6 +190,10 @@ def levelTwo():
            
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points ❤.")
+    leaderboard_2[name]=sum(points)
+    Savetoleaderboard('leaderboard2_Ananse.txt',name,points)
+    writeleaderboard()
+  
 
     
 
@@ -178,6 +237,36 @@ def levelThree():
             print("The answer is ", ans, " you have one point for trying 👌.")
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
+    leaderboard_3[name]=sum(points)
+    Savetoleaderboard('leaderboard3_Ananse.txt',name,points)
+    writeleaderboard()
+   
+
+
+
+def writeleaderboard():
+    with open('leaderboard1_Ananse.txt','r') as file:
+        content=file.readlines()
+        for i in content:
+            i.split('|')
+        for i in content :
+            print(i)
+    with open('leaderboard2_Ananse.txt','r') as file:
+        content=file.readlines()
+        for i in content:
+            i.split('|')
+        for i in content :
+            print(i)
+    with open('leaderboard3_Ananse.txt','r') as file:
+        content=file.readlines()
+        for i in content:
+            i.split('|')
+        for i in content :
+            print(i)
+
+
+           
+
 
 
 # Function to begin the game
@@ -212,7 +301,8 @@ def Begin():
     if ToDo == 1:
         Rules()
     elif ToDo == 2:
-        ScoreBoard()
+        # saveleaderboard()l
+        writeleaderboard()
     elif ToDo == 3:
         Game()
     else:
