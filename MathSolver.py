@@ -79,15 +79,15 @@ def levelOne():
         while user_ans != ans and count != 3:
             count += 1
             earnable_points -= 1
-            print("Please try again")
+            print("Please try again 😊")
             print("What is ", a, signlist[c],b, "?")
             user_ans = eval(input(f"{'Answer here: ':^50}"))
         if count == 0 or count < 3:
             points.append(earnable_points)
-            print("Well done! You have earned,", earnable_points)
+            print("Well done! You have earned", earnable_points, "points 😎")
         else:
             points.append(1)
-            print("The answer is ", ans)
+            print("The answer is ", ans, "and you earn 1 point for trying 👏.")
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
 
@@ -121,21 +121,20 @@ def levelTwo():
         while user_ans != ans and count !=3:
             count += 1
             earnable_points -= 1
-            print("Please try again")
+            print("Please try again 😊")
             print("What is ", a, signlist[c],b, "?")
             user_ans = eval(input(f"{'Answer here: ':^50}"))
         if count == 0 or count < 3:
             points.append(earnable_points)
-            print("Well done! You have earned,", earnable_points, "points")
+            print("Well done! You have earned", earnable_points, "points 🥂")
         else:
             points.append(1)
             print("The answer is ", ans)
             print("Better luck next time 👌.")
             print(" ")
-            # print("Let's go to the next question 😃.")
-            # print(" ")
+           
         question +=1
-    print("Congratulations! You have earned: ",sum(points), "points.")
+    print("Congratulations! You have earned: ",sum(points), "points ❤.")
 
     
 
@@ -173,10 +172,10 @@ def levelThree():
             user_ans = eval(input(f"{'Answer here: ':^50}"))
         if count == 0 or count < 3:
             points.append(earnable_points)
-            print("Well done! You have earned,", earnable_points)
+            print("Well done! You have earned ", earnable_points, "points 🎊.")
         else:
             points.append(1)
-            print("The answer is ", ans)
+            print("The answer is ", ans, " you have one point for trying 👌.")
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
 
@@ -198,6 +197,9 @@ def Game():
         levelTwo()
     elif level == 3:
         levelThree()
+    else:
+        print("Please type properly what you want to do")
+        Game()
         
 # Function to run the Home page
 def Begin():
@@ -215,9 +217,8 @@ def Begin():
         Game()
     else:
         print("Please type correctly what you want to do")
+        Begin()
         
-
-    
 
 def main():
     Begin()
