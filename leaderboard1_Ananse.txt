@@ -1,3 +1,5 @@
 ------leaderboard_1------------- 
    Name      | Score  
-Ben            |    15
+Ewura Ama      |    15
+Ewura Ama's Daughter|    15
+Baaba          |    15

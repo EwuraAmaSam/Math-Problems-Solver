@@ -1,2 +1,3 @@
 ------leaderboard_3------------- 
    Name      | Score  
+Hawa           |    12

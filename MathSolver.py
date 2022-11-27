@@ -38,11 +38,16 @@ def saveleaderboard3():
          
             print('Leaderboards Ready!')
 
-# saveleaderboard1()
+try:
+    f=open('leaderboard1_Ananse.txt')
+    print('Y')
+    f.close()
+except IOError:
+    saveleaderboard1()
 
-# saveleaderboard2()
+    saveleaderboard2()
 
-# saveleaderboard3()
+    saveleaderboard3()
 
 
 def Rules():
@@ -143,7 +148,7 @@ def levelOne():
     print("Congratulations! You have earned: ",sum(points), "points.")
     leaderboard_1[name]=sum(points)
     Savetoleaderboard('leaderboard1_Ananse.txt',name,points)
-    writeleaderboard()
+    # writeleaderboard()
 
 
               
@@ -192,7 +197,7 @@ def levelTwo():
     print("Congratulations! You have earned: ",sum(points), "points ❤.")
     leaderboard_2[name]=sum(points)
     Savetoleaderboard('leaderboard2_Ananse.txt',name,points)
-    writeleaderboard()
+    # writeleaderboard()
   
 
     
@@ -239,7 +244,7 @@ def levelThree():
     print("Congratulations! You have earned: ",sum(points), "points.")
     leaderboard_3[name]=sum(points)
     Savetoleaderboard('leaderboard3_Ananse.txt',name,points)
-    writeleaderboard()
+    # writeleaderboard()
    
 
 
@@ -263,6 +268,20 @@ def writeleaderboard():
             i.split('|')
         for i in content :
             print(i)
+    print(" ")
+    print(f"{'You and your friends are doing amazing! Math is fun right?':^50}")
+    print(f"{'Now, what do you want to do next?':^50}")
+    print(f"{'Type 0 to go back to the main menu.':^50}")
+    print(f"{'Type 1 to play a game.':^50}")
+    print(f"{'Type any other key to exit.':^50}")
+    doNext = eval(input("Type here: "))
+    if doNext == 0:
+        Begin()
+    elif doNext == 1:
+        Game()
+    else:
+        print("Goodbye")
+
 
 
            

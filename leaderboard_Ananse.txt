@@ -1,7 +1,0 @@
-------leaderboard_1------------- 
-   Name                 | Score  
-------leaderboard_2------------- 
-   Name                 | Score  
-Ewura Ama      |    15
-------leaderboard_3------------- 
-   Name                 | Score  
