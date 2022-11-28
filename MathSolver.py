@@ -6,11 +6,13 @@ import sys
 global p
 p = True
 
+# Dictionaries to store the scores for each scoreboard. Each level has its own scoreboard
 leaderboard_1={}
 leaderboard_2={}
 leaderboard_3={} 
 
 
+#These functions are used to create the files if they are not found on the device.
 def saveleaderboard1():
     with open('leaderboard1_Ananse.txt','w') as file:
             file.writelines('------leaderboard_1------------- \n')
@@ -48,14 +50,11 @@ try:
     f.close()
 except IOError:
     saveleaderboard1()
-
     saveleaderboard2()
-
     saveleaderboard3()
 
-
+# This function contains the rules of the game.
 def Rules():
-    # a = "Welcome to another game with Ananse"
     print(f"{'Welcome to another game with Ananse 😁':>70}")
     time.sleep(1)
     print(f"{'Are you ready? 😎':>70}")
@@ -119,13 +118,16 @@ def Rules():
     print(f"{'If you do not get it after the three attempts, you get 1 point 😉':>50}")
     print(" ")
 
-
-    menu = eval(input(f"{'TYPE 0 TO GO BACK TO THE MAIN MENU: ' :>70}"))
-    if menu == 0:
+#The following code takes the user to the main menu.
+    menu = input(f"{'TYPE 0 TO GO BACK TO THE MAIN MENU: ' :>70}")
+    if menu == '0':
         main()
     else:
-        pass
+        print(f"{'Bye then. We hope to see you again.':>50}")
 
+
+
+# This function saves scores to the scoreboard.
 def Savetoleaderboard(filename,name,points):
     with open(filename,'a') as file:
         spaces_count=15-len(name)
@@ -133,7 +135,7 @@ def Savetoleaderboard(filename,name,points):
         file.writelines('{}{}|    {}\n'.format(name,spaces,sum(points)))
 
 
-
+# This function is the first level of the game
 def levelOne():
     name = input(f"{'Welcome 🥳! Enter your name to begin:':^50}")
     earnable_points = 5
@@ -170,8 +172,10 @@ def levelOne():
             print("The answer is ", ans, "and you earn 1 point for trying 👏.")
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
+    # The following lines save the score and the name to the scoreboard
     leaderboard_1[name]=sum(points)
     Savetoleaderboard('leaderboard1_Ananse.txt',name,points)
+    # The following lines of code ask the user what they would like to do next.
     print(f"{'Would you like to play another game?':^90}")
     print(f"{'Type 1 to play again':^90}")
     print(f"{'Type 0 to go back to the main menu.':^90}")
@@ -186,7 +190,7 @@ def levelOne():
 
        
 
-
+# This function is the second level of the game
 def levelTwo():
     name = input(f"{'Welcome 🥳! Enter your name to begin:':^50}")
     earnable_points = 5
@@ -227,8 +231,10 @@ def levelTwo():
            
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points ❤.")
+    # The following lines save the score and the name to the scoreboard
     leaderboard_2[name]=sum(points)
     Savetoleaderboard('leaderboard2_Ananse.txt',name,points)
+    # The following lines of code ask the user what they would like to do next.
     print(f"{'Would you like to play another game?':^90}")
     print(f"{'Type 1 to play again':^90}")
     print(f"{'Type 0 to go back to the main menu.':^90}")
@@ -242,7 +248,7 @@ def levelTwo():
         print("Goodbye. We hope to see you play again.")
   
 
-
+# This function is used to set the timer for the first question of level three
 def countdown():
     global earnable_points
     global user_ans
@@ -255,10 +261,11 @@ def countdown():
         return
     elif t<=0 and not user_ans:
         print('Time elapsed. Try again.\nAnswer here: ', end=' ')
+        # A point is deducted if the user does not answer in the specified time of 1 minute
         earnable_points-=1    
    
 
-
+# This function is the second level of the game
 def levelThree():
     name = input(f"{'Welcome 🥳! Enter your name to begin:':^50}")
     points = []
@@ -305,8 +312,10 @@ def levelThree():
         count_thread.join()
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
+    # The following lines save the score and the name to the scoreboard
     leaderboard_3[name]=sum(points)
     Savetoleaderboard('leaderboard3_Ananse.txt',name,points)
+    # The following lines of code ask the user what they would like to do next.
     print(f"{'Would you like to play another game?':^90}")
     print(f"{'Type 1 to play again':^90}")
     print(f"{'Type 0 to go back to the main menu.':^90}")
@@ -320,7 +329,7 @@ def levelThree():
         print("Goodbye. We hope to see you play again.")
 
     
-
+# This function displays the scoreboard to the user when called. 
 def writeleaderboard():
     with open('leaderboard1_Ananse.txt','r') as file:
         content=file.readlines()
@@ -358,14 +367,9 @@ def writeleaderboard():
         Game()
     else:
         print("Goodbye. We hope to see you play again.")
+         
 
-
-
-           
-
-
-
-# Function to begin the game
+# This function begins the game whenever it is run.
 def Game():
     
     print(f"{'Please choose the level.':^90}")
