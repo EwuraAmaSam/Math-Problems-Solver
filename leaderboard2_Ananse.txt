@@ -1,3 +1,0 @@
-------leaderboard_2------------- 
-   Name      | Score  
-Ben            |    15

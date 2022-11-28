@@ -1,10 +1,14 @@
+import datetime
+import threading
 import random
-# import time
+import time
+import sys
+global p
+p = True
 
 leaderboard_1={}
 leaderboard_2={}
 leaderboard_3={} 
-
 
 
 def saveleaderboard1():
@@ -53,46 +57,68 @@ except IOError:
 def Rules():
     # a = "Welcome to another game with Ananse"
     print(f"{'Welcome to another game with Ananse 😁':>70}")
+    time.sleep(1)
     print(f"{'Are you ready? 😎':>70}")
-    print(f"{'Let us check out the rules rules 📃':>70}")
+    time.sleep(1)
+    print(f"{'Let us check out the rules  📃':>70}")
     print(" ")
+    time.sleep(1)
     print(f"{'BEGINNER LEVEL RULES':>30}")
     print(" ")
+    time.sleep(1)
     print(f"{'👩‍🏫At this stage, you will be working with just one math operator.':>50}")
     print(" ")
+    time.sleep(1)
     print(f"{'👩‍🏫It could be addition, subtraction, division, or multiplication.':>50}")
     print(" ")
+    time.sleep(1)
     print(f"{'👩‍🏫Do you know the good part to this level?? There is no time limit😉':>50}")
     print(" ")
+    time.sleep(1)
 
     print(f"{'INTERMEDIATE LEVEL RULES':>30}")
     print(" ")
+    time.sleep(1)
     print(f"{'👩‍🏫At this level, we are going to try bigger numbers with only one operator':>50}")
     print(" ")
-    print(f"{'👩‍🏫You also have 3 minutes to solve each problem.':>50}")
+    time.sleep(1)
+    print(f"{'👩‍🏫There is no time limit on this level but the questions are more challenging 😉':>50}")
     print(" ")
+    time.sleep(1)
    
 
     print(f"{'ADVANCED LEVEL RULES':>30}")
     print(" ")
+    time.sleep(1)
     print(f"{'👩‍🏫This is the part where it gets challenging but interesting.':>50}")
     print(" ")
+    time.sleep(1)
     print(f"{'👩‍🏫At this level, you get to work with two math operators (+,-) and higher numbers.':>50}")
     print(" ")
-    print(f"{'👩‍🏫You have 5 minutes to answer each question':>50}")
+    time.sleep(1)
+    print(f"{'👩‍🏫You have 1 minute to answer the first question':>50}")
     print(" ")
+    time.sleep(1)
+    print(f"{'👩‍🏫After that one minute challenge, you have time to rest and solve the rest at your own pace.':>50}")
+    print(" ")
+    time.sleep(1)
 
 
     print(f"{'RULES FOR THE SCORES':>60}")
     print(" ")
+    time.sleep(1)
     print(f"{'If you get it correct on the first attempt, you earn 5 points ✔🎊':>50}")
     print(" ")
+    time.sleep(1)
     print(f"{'If you get it correct on the second attempt, you earn 4 points ✔🥂':>50}")
     print(" ")
-    print(f"{'If you get it correct on the third attempt, you earn 5 points ✔👏':>50}")
+    time.sleep(1)
+    print(f"{'If you get it correct on the third attempt, you earn 3 points ✔👏':>50}")
     print(" ")
+    time.sleep(1)
     print(f"{'If you do not get it after the three attempts, you get 1 point 😉':>50}")
     print(" ")
+
 
     menu = eval(input(f"{'TYPE 0 TO GO BACK TO THE MAIN MENU: ' :>70}"))
     if menu == 0:
@@ -106,8 +132,6 @@ def Savetoleaderboard(filename,name,points):
         spaces=' '*spaces_count
         file.writelines('{}{}|    {}\n'.format(name,spaces,sum(points)))
 
-def ScoreBoard():
-    pass
 
 
 def levelOne():
@@ -148,11 +172,19 @@ def levelOne():
     print("Congratulations! You have earned: ",sum(points), "points.")
     leaderboard_1[name]=sum(points)
     Savetoleaderboard('leaderboard1_Ananse.txt',name,points)
-    # writeleaderboard()
+    print(f"{'Would you like to play another game?':^90}")
+    print(f"{'Type 1 to play again':^90}")
+    print(f"{'Type 0 to go back to the main menu.':^90}")
+    print(f"{'Type any key to exit the game.':^90}")
+    playAgain = input("Type here: ")
+    if playAgain == '1':
+        Game()
+    elif playAgain == '0':
+        Begin()
+    else:
+        print("Goodbye. We hope to see you play again.")
 
-
-              
-# levelOne()        
+       
 
 
 def levelTwo():
@@ -197,20 +229,46 @@ def levelTwo():
     print("Congratulations! You have earned: ",sum(points), "points ❤.")
     leaderboard_2[name]=sum(points)
     Savetoleaderboard('leaderboard2_Ananse.txt',name,points)
-    # writeleaderboard()
+    print(f"{'Would you like to play another game?':^90}")
+    print(f"{'Type 1 to play again':^90}")
+    print(f"{'Type 0 to go back to the main menu.':^90}")
+    print(f"{'Type any key to exit the game.':^90}")
+    playAgain = input("Type here: ")
+    if playAgain == '1':
+        Game()
+    elif playAgain == '0':
+        Begin()
+    else:
+        print("Goodbye. We hope to see you play again.")
   
 
-    
 
-# levelTwo()
+def countdown():
+    global earnable_points
+    global user_ans
+    # Set time to 1 minutes for the countdown
+    t=60
+    while t>0:
+        time.sleep(1)
+        t-=1
+    if user_ans and t>=0:
+        return
+    elif t<=0 and not user_ans:
+        print('Time elapsed. Try again.\nAnswer here: ', end=' ')
+        earnable_points-=1    
+   
+
 
 def levelThree():
     name = input(f"{'Welcome 🥳! Enter your name to begin:':^50}")
-    earnable_points = 5
     points = []
     question = 0
-
+    global earnable_points
+    global user_ans
+    user_ans=0
     while question < 3:
+        earnable_points = 5
+        count_thread=threading.Thread(None,countdown) 
         a = random.randint(0,99)
         b = random.randint(1,99)
         d = random.randint(1,99)
@@ -220,14 +278,16 @@ def levelThree():
         if c == 0 and e == 0:
             ans = a + b +d
         elif c ==  1 and e == 1:
-            ans = a - b -d
+            ans = a - b - d
         elif c == 0 and e == 1:
             ans = a+b-d
         else:
             ans = a-b+d
         print("What is ", a, signlist[c],b,signlist[e],d, "?")
+        count_thread.start()
         user_ans = eval(input(f"{'Answer here: ':^50}"))
         count = 1
+        t=10
         while user_ans != ans and count != 3:
             count += 1
             earnable_points -= 1
@@ -239,15 +299,27 @@ def levelThree():
             print("Well done! You have earned ", earnable_points, "points 🎊.")
         else:
             points.append(1)
-            print("The answer is ", ans, " you have one point for trying 👌.")
+            print("The answer is ", ans)
+            print("Better luck next time 👌.")
+            print(" ")        
+        count_thread.join()
         question +=1
     print("Congratulations! You have earned: ",sum(points), "points.")
     leaderboard_3[name]=sum(points)
     Savetoleaderboard('leaderboard3_Ananse.txt',name,points)
-    # writeleaderboard()
-   
+    print(f"{'Would you like to play another game?':^90}")
+    print(f"{'Type 1 to play again':^90}")
+    print(f"{'Type 0 to go back to the main menu.':^90}")
+    print(f"{'Type any key to exit the game.':^90}")
+    playAgain = input("Type here: ")
+    if playAgain == '1':
+        Game()
+    elif playAgain == '0':
+        Begin()
+    else:
+        print("Goodbye. We hope to see you play again.")
 
-
+    
 
 def writeleaderboard():
     with open('leaderboard1_Ananse.txt','r') as file:
@@ -256,31 +328,36 @@ def writeleaderboard():
             i.split('|')
         for i in content :
             print(i)
+            time.sleep(1)
     with open('leaderboard2_Ananse.txt','r') as file:
         content=file.readlines()
         for i in content:
             i.split('|')
         for i in content :
             print(i)
+            time.sleep(1)
     with open('leaderboard3_Ananse.txt','r') as file:
         content=file.readlines()
         for i in content:
             i.split('|')
         for i in content :
             print(i)
+            time.sleep(1)
     print(" ")
-    print(f"{'You and your friends are doing amazing! Math is fun right?':^50}")
+    print(f"{'You and your friends are doing amazing! Math is fun right 😃?':^50}")
+    time.sleep(1)
     print(f"{'Now, what do you want to do next?':^50}")
+    time.sleep(1)
     print(f"{'Type 0 to go back to the main menu.':^50}")
     print(f"{'Type 1 to play a game.':^50}")
     print(f"{'Type any other key to exit.':^50}")
-    doNext = eval(input("Type here: "))
-    if doNext == 0:
+    doNext = input("Type here: ")
+    if doNext == '0':
         Begin()
-    elif doNext == 1:
+    elif doNext == '1':
         Game()
     else:
-        print("Goodbye")
+        print("Goodbye. We hope to see you play again.")
 
 
 
@@ -296,6 +373,7 @@ def Game():
     print(f"{'Type 1 for BEGINNER level 👶.':^90}")
     print(f"{'Type 2 for INTERMEDIATE level 🏃‍♂️.':^90}")
     print(f"{'Type 3 for ADVANCED level. 🏃‍♀️💨':^90}")
+    print(f"{'Type 4 to Exit...😥 🏃‍♀️💨':^90}")
     print(" ")
    
     level = eval(input(f"{'Level: ':^50}"))
@@ -305,6 +383,8 @@ def Game():
         levelTwo()
     elif level == 3:
         levelThree()
+    elif level == 4:
+        print("Bye 👋!")
     else:
         print("Please type properly what you want to do")
         Game()
@@ -315,20 +395,21 @@ def Begin():
     print(f"{'Type 1 to see the RULES.':^90}")
     print(f"{'Type 2 to see the SCORE BOARD.':^90}")
     print(f"{'Type 3 to BEGIN THE GAME.':^90}")
+    print(f"{'Type 4 to Exit...😥 🏃‍♀️💨':^90}")
 
-    ToDo = eval(input("Please type here: "))
-    if ToDo == 1:
+    ToDo = input("Please type here: ")
+    if ToDo == '1':
         Rules()
-    elif ToDo == 2:
-        # saveleaderboard()l
+    elif ToDo == '2':
         writeleaderboard()
-    elif ToDo == 3:
+    elif ToDo == '3':
         Game()
+    elif ToDo == '4':
+        print("Bye 👋!")
     else:
         print("Please type correctly what you want to do")
         Begin()
         
-
 def main():
     Begin()
 
